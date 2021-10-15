@@ -1,12 +1,16 @@
 <template>
-  <h1>List</h1>
+  <section class="wrapper list-wrapper">
+    <TitleBar />
+  </section>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import TitleBar from "./inc/TitleBar.vue";
 
 export default {
   name: "ListCp",
+  components: { TitleBar },
   computed: {
     ...mapGetters(["GET_BOOKS"]),
   },
