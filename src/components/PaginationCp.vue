@@ -1,22 +1,17 @@
 <template>
   <section class="wrapper list-wrapper">
+    <TableCp />
   </section>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import TableCp from "./TableCp.vue";
 
 export default {
-  name: "ListCp",
-  computed: {
-    ...mapGetters(["GET_BOOKS"]),
-  },
-  watch: {
-    GET_BOOKS: function (v) {
-      console.log(v);
-    }
-  },
+  name: "PaginationCp",
+  components: { TableCp },
   created() {
+    console.log(this);
     this.$store.dispatch("ACT_BOOKS");
   },
 };

@@ -19,6 +19,9 @@ h1.logo {
   font-size: 1em;
   margin-bottom: 0;
   @include flex;
+  i {
+    margin-right: 0.25em;
+  }
   a {
     @include flex($v: center);
     padding: 0.75em;
