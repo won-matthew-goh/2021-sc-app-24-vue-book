@@ -17,18 +17,18 @@
         <TrCp v-for="book in GET_BOOKS.books" :key="book.idx" :book="book" />
       </tbody>
     </table>
-    <!-- Pager -->
-    <!-- <PagerCp :v="GET_BOOKS.pager" /> -->
+    <PagerCp :pager="GET_BOOKS.pager" />
   </div>
 </template>
 
 <script>
-import TrCp from "./TrCp.vue";
+import TrCp from "../common/TrCp.vue";
+import PagerCp from "../common/PagerCp.vue"
 import { mapGetters } from "vuex";
 
 export default {
   name: "TableCp",
-  components: { TrCp },
+  components: { TrCp, PagerCp },
   computed: {
     ...mapGetters(["GET_BOOKS"]),
   },

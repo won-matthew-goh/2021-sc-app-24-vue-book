@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import TableCp from "./TableCp.vue";
+import TableCp from "../common/TableCp.vue";
 
 export default {
   name: "PaginationCp",
   components: { TableCp },
   created() {
-    console.log(this);
-    this.$store.dispatch("ACT_BOOKS");
+    this.$store.dispatch("ACT_BOOKS", this.$route.params.page || 1);
   },
 };
 </script>
