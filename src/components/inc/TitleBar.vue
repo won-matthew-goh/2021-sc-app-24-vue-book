@@ -1,24 +1,21 @@
 <template>
-  <div>
-  <b-jumbotron>
-    <template #header>BootstrapVue</template>
+  <div class="title-bar">
+    <b-jumbotron class="jumbotron">
+      <template #header>Vue Library Management System</template>
 
-    <template #lead>
-      This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-      featured content or information.
-    </template>
+      <template #lead>
+        Vue.js / Vuex / Vue-router를 활용한 도서 관리 시스템
+      </template>
 
-    <hr class="my-4">
+      <hr class="my-4">
 
-    <p>
-      It uses utility classes for typography and spacing to space content out within the larger
-      container.
-    </p>
+      <p>
+        Node.js / Express / MySQL을 활용한 도서 관리 시스템을 확인하시려면 아래의 링크를 클릭하세요.
+      </p>
 
-    <b-button variant="primary" href="#">Do Something</b-button>
-    <b-button variant="success" href="#">Do Something Else</b-button>
-  </b-jumbotron>
-</div>
+      <b-button variant="primary" href="//">Express 도서 관리 시스템 바로 가기</b-button>
+    </b-jumbotron>
+  </div>
 </template>
 
 <script>
@@ -28,9 +25,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-wrapper {
-  .title {
-    background-color: $dark-color;
+.title-bar {
+  background-color: $grey-color;
+  color: $light-color;
+  padding: 2em 0;
+  .jumbotron {
+    width: 90%;
+    margin: auto;
+    .display-3 {
+      font-size: 2.5rem;
+      margin-bottom: 0.25em;
+    }
   }
 }
 </style>
