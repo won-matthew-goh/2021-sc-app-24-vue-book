@@ -11,7 +11,8 @@ export default {
   name: "PaginationCp",
   components: { TableCp },
   created() {
-    this.$store.dispatch("ACT_BOOKS", this.$route.params.page || 1);
+    this.$store.dispatch("ACT_BOOKS", 1);
+    this.$store.dispatch("ACT_LOADING", true);
   },
 };
 </script>

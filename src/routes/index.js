@@ -9,16 +9,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/list/1",
-  },
-  {
-    path: "/list/:page",
     name: "List",
     component: List,
   },
   {
     path: "/infinite/",
-    redirect: "/infinite/1"
+    redirect: "/infinite/1",
   },
   {
     path: "/infinite/:page",

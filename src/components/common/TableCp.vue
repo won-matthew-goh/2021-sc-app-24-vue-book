@@ -13,9 +13,11 @@
           <th>상태</th>
         </tr>
       </thead>
-      <tbody>
-        <TrCp v-for="book in GET_BOOKS.books" :key="book.idx" :book="book" />
-      </tbody>
+      <transition name="fade" mode="out-in">
+        <tbody>
+          <TrCp v-for="book in GET_BOOKS.books" :key="book.idx" :book="book" />
+        </tbody>
+      </transition>
     </table>
     <PagerCp :pager="GET_BOOKS.pager" />
   </div>
@@ -23,7 +25,7 @@
 
 <script>
 import TrCp from "../common/TrCp.vue";
-import PagerCp from "../common/PagerCp.vue"
+import PagerCp from "../common/PagerCp.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -31,6 +33,12 @@ export default {
   components: { TrCp, PagerCp },
   computed: {
     ...mapGetters(["GET_BOOKS"]),
+  },
+  beforeUpdate() {
+    this.$store.dispatch("ACT_LOADING", true);
+  },
+  updated() {
+    this.$store.dispatch("ACT_LOADING", false);
   },
 };
 </script>

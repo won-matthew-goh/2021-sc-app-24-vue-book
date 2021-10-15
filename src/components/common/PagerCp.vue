@@ -1,19 +1,32 @@
 <template>
   <ul class="pager-wrap">
-    <a :href="`/list/${firstPage}`" class="pager fa fa-step-backward"></a>
-    <a :href="`/list/${prevPager}`" class="pager fa fa-backward"></a>
-    <a :href="`/list/${prevPage}`" class="pager fa fa-caret-left"></a>
-    <a
+    <li @click="changePage" :title="firstPage" class="pager">
+      <i class="fa fa-step-backward"></i>
+    </li>
+    <li @click="changePage" :title="prevPager" class="pager">
+      <i class="fa fa-backward"></i>
+    </li>
+    <li @click="changePage" :title="prevPage" class="pager">
+      <i class="fa fa-caret-left"></i>
+    </li>
+    <li
       v-for="v in pageArr"
-      :href="`/list/${v}`"
+      :title="v"
       :key="v"
       :class="`pager ${page === v ? 'active' : ''}`"
+      @click="changePage"
     >
       {{ v }}
-    </a>
-    <a :href="`/list/${nextPage}`" class="pager fa fa-caret-right"></a>
-    <a :href="`/list/${nextPager}`" class="pager fa fa-forward"></a>
-    <a :href="`/list/${lastPage}`" class="pager fa fa-step-forward"></a>
+    </li>
+    <li @click="changePage" :title="nextPage" class="pager">
+      <i class="fa fa-caret-right"></i>
+    </li>
+    <li @click="changePage" :title="nextPager" class="pager">
+      <i class="fa fa-forward"></i>
+    </li>
+    <li @click="changePage" :title="lastPage" class="pager">
+      <i class="fa fa-step-forward"></i>
+    </li>
   </ul>
 </template>
 
@@ -49,6 +62,14 @@ export default {
       }
     },
   },
+  methods: {
+    changePage(e) {
+      const _page = e.currentTarget.title;
+      if (this.page != _page) {
+        this.$store.dispatch("ACT_BOOKS", _page);
+      }
+    },
+  },
 };
 </script>
 
@@ -61,6 +82,7 @@ export default {
     /* border: 1px solid $grey-color; */
     margin-right: -1px;
     color: $grey-color;
+    cursor: pointer;
     &.active {
       background-color: $grey-color;
       color: $light-color;
