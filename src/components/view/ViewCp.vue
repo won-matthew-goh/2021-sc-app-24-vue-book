@@ -1,13 +1,13 @@
 <template>
   <section class="wrapper view-wrapper">
     <h3 class="title">도서 상세 내용</h3>
-    <InfoTxt :data="title" :styled="styled" />
-    <InfoTxt :data="writer" :styled="styled" />
-    <InfoTxt :data="date" :styled="styled" />
-    <InfoTxt :data="status" :styled="styled" />
-    <InfoTxt :data="content" :styled="styled" />
-    <InfoImg :data="cover" :styled="styled" v-show="cover" />
-    <InfoImg :data="upfile" :styled="styled" v-show="upfile" />
+    <InfoTxtCp :data="title" :styled="styled" />
+    <InfoTxtCp :data="writer" :styled="styled" />
+    <InfoTxtCp :data="date" :styled="styled" />
+    <InfoTxtCp :data="status" :styled="styled" />
+    <InfoTxtCp :data="content" :styled="styled" />
+    <InfoImgCp :data="cover" :styled="styled" v-show="cover" />
+    <InfoImgCp :data="upfile" :styled="styled" v-show="upfile" />
     <div class="bt-wrap">
       <button class="btn btn-success bt-back" @click="goBack">리스트</button>
     </div>
@@ -17,12 +17,12 @@
 <script>
 const { VUE_APP_EXPRESS } = process.env;
 import { mapGetters } from "vuex";
-import InfoTxt from "../common/InfoTxtCp.vue";
-import InfoImg from "../../components/common/InfoImgCp.vue";
+import InfoTxtCp from "../common/InfoTxtCp.vue";
+import InfoImgCp from "../../components/common/InfoImgCp.vue";
 
 export default {
   name: "ViewCp",
-  components: { InfoTxt, InfoImg },
+  components: { InfoTxtCp, InfoImgCp },
   data() {
     return {
       styled: { padding: "1em" },

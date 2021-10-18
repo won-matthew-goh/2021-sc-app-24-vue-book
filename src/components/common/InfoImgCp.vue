@@ -16,7 +16,7 @@
 import mixinInfo from "@/components/mixins/mixinInfo";
 
 export default {
-  name: "InfoTxt",
+  name: "InfoImgCp",
   mixins: [mixinInfo],
 };
 </script>
