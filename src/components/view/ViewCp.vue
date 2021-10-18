@@ -1,30 +1,15 @@
 <template>
   <section class="wrapper view-wrapper">
     <h3 class="title">도서 상세 내용</h3>
-    <InfoTxt :title="`제목`" :content="GET_BOOK.title" :styled="styled" />
-    <InfoTxt :title="`저자`" :content="GET_BOOK.writer" :styled="styled" />
-    <InfoTxt :title="`발행일`" :content="GET_BOOK.createdAt" :styled="styled" />
-    <InfoTxt :title="`상태`" :content="GET_BOOK.status" :styled="styled" />
-    <InfoTxt :title="`내용`" :content="GET_BOOK.content" :styled="styled" />
-    <InfoImg
-      :title="`표지`"
-      :content="VUE_APP_EXPRESS + '/' + GET_BOOK.cover"
-      :styled="styled"
-      v-show="GET_BOOK.cover"
-    />
-    <div v-if="GET_BOOK.isImg">
-      <InfoImg
-        :title="`첨부파일`"
-        :content="VUE_APP_EXPRESS + '/' + GET_BOOK.upfile"
-        :styled="styled"
-      />
-    </div>
-    <div v-else>
-      <InfoTxt
-        :title="`첨부파일`"
-        :content="GET_BOOK.upfile"
-        :styled="styled"
-      />
+    <InfoTxt :data="title" :styled="styled" />
+    <InfoTxt :data="writer" :styled="styled" />
+    <InfoTxt :data="date" :styled="styled" />
+    <InfoTxt :data="status" :styled="styled" />
+    <InfoTxt :data="content" :styled="styled" />
+    <InfoImg :data="cover" :styled="styled" v-show="cover" />
+    <InfoImg :data="upfile" :styled="styled" v-show="upfile" />
+    <div class="bt-wrap">
+      <button class="btn btn-success bt-back" @click="goBack">리스트</button>
     </div>
   </section>
 </template>
@@ -32,8 +17,8 @@
 <script>
 const { VUE_APP_EXPRESS } = process.env;
 import { mapGetters } from "vuex";
-import InfoTxt from "../common/InfoTxtCp.vue"
-import InfoImg from "../../components/common/InfoImgCp.vue"
+import InfoTxt from "../common/InfoTxtCp.vue";
+import InfoImg from "../../components/common/InfoImgCp.vue";
 
 export default {
   name: "ViewCp",
@@ -46,6 +31,52 @@ export default {
   },
   computed: {
     ...mapGetters(["GET_BOOK"]),
+    title() {
+      return { title: "제목", content: this.GET_BOOK.title };
+    },
+    writer() {
+      return { title: "작성자", content: this.GET_BOOK.writer };
+    },
+    date() {
+      return { title: "발행일", content: this.GET_BOOK.createdAt };
+    },
+    status() {
+      return { title: "상태", content: this.GET_BOOK.status };
+    },
+    content() {
+      return { title: "상태", content: this.GET_BOOK.content };
+    },
+    cover() {
+      if (this.GET_BOOK.cover) {
+        return {
+          title: "커버 이미지",
+          content: VUE_APP_EXPRESS + this.GET_BOOK.cover,
+        };
+      } else {
+        return false;
+      }
+    },
+    upfile() {
+      if (this.GET_BOOK.upfile) {
+        return {
+          title: "첨부파일",
+          content: this.GET_BOOK.isImg
+            ? VUE_APP_EXPRESS + this.GET_BOOK.upfile
+            : null,
+          fileName: this.GET_BOOK.upfile ? this.GET_BOOK.oriname2 : null,
+          filePath: this.GET_BOOK.upfile
+            ? VUE_APP_EXPRESS + "/book/download/" + this.GET_BOOK.id2
+            : null,
+        };
+      } else {
+        return false;
+      }
+    },
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
   },
   created() {
     this.idx = this.$route.params.idx;
@@ -54,4 +85,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.view-wrapper {
+  .title {
+    margin-bottom: 1em;
+    border-bottom: 1px solid $success-color;
+    padding-bottom: 0.5em;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 10px;
+      background-color: $accent-color;
+      margin-right: 0.5em;
+    }
+  }
+  .bt-wrap {
+    margin: 2em 0;
+    text-align: center;
+  }
+}
+</style>
