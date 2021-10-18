@@ -1,6 +1,6 @@
 <template>
   <div class="tbl-wrap">
-    <!-- Table -->
+    <!-- table -->
     <table class="table">
       <thead>
         <tr>
@@ -13,35 +13,21 @@
           <th>상태</th>
         </tr>
       </thead>
-      <transition name="fade" mode="out-in">
-        <tbody>
-          <TrCp v-for="book in GET_BOOKS.books" :key="book.idx" :book="book" />
-        </tbody>
-      </transition>
+      <tbody>
+        <TrCp v-for="book in books" :key="book.idx" :book="book" />
+      </tbody>
     </table>
-    <PagerCp :pager="GET_BOOKS.pager" v-show="isPager" />
   </div>
 </template>
 
 <script>
-import TrCp from "../common/TrCp.vue";
-import PagerCp from "../common/PagerCp.vue";
-import { mapGetters } from "vuex";
+import TrCp from "@/components/common/TrCp.vue";
+
 
 export default {
   name: "TableCp",
-  components: { TrCp, PagerCp },
-  props: ["isPager"],
-  computed: {
-    ...mapGetters(["GET_BOOKS"]),
-  },
-  beforeUpdate() {
-    this.$store.dispatch("ACT_LOADING", true);
-  },
-  updated() {
-    console.log(this.GET_BOOKS.pager);
-    this.$store.dispatch("ACT_LOADING", false);
-  },
+  components: { TrCp },
+  props: ["books"],
 };
 </script>
 
