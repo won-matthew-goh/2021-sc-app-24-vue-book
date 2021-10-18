@@ -33,12 +33,28 @@ export default {
 
 <style lang="scss" scoped>
 .tbl-wrap {
-  table {
+  .table {
     text-align: center;
     th {
-      background-color: $grey-color;
-      color: $white-color;
+      background-color: $accent-color;
+      color: $light-color;
       padding: 0.75em 0;
+      @include MD {
+        &:nth-child(4),
+        &:nth-child(5) {
+          display: none;
+        }
+      }
+      @include SM {
+        &:nth-child(6) {
+          display: none;
+        }
+      }
+      @include XS {
+        &:nth-child(3) {
+          display: none;
+        }
+      }
     }
   }
 }

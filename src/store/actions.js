@@ -1,4 +1,4 @@
-import apiBooks from "../api/api-books";
+import { apiBook, apiBooks } from "@/api";
 
 const ACT_BOOKS = async ({ commit }, options) => {
   try {
@@ -12,7 +12,13 @@ const ACT_BOOKS = async ({ commit }, options) => {
 };
 
 const ACT_BOOK = async ({ commit }, idx) => {
-  console.log(commit, idx);
+  try {
+    const { data } = await apiBook(idx);
+    commit("MUT_BOOK", data);
+  } catch (err) {
+    console.log(err);
+    commit("MUT_BOOKS", null);
+  }
 };
 
 const ACT_LOADING = async ({ commit }, toggle) => {

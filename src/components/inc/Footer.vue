@@ -1,5 +1,5 @@
 <template>
-  <footer>ⓒ copyright Uon. Allright reserved.</footer>
+  <footer>ⓒ copyright booldook. Allright reserved.</footer>
 </template>
 
 <script>
@@ -10,9 +10,10 @@ export default {
 
 <style lang="scss" scoped>
 footer {
+  font-size: 0.875em;
   background-color: $dark-color;
   color: $light-color;
-  padding: 0.875em;
+  padding: 1em;
   text-align: center;
 }
 </style>
