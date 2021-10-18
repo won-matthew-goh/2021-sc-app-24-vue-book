@@ -13,7 +13,7 @@ const routes = [
     component: List,
   },
   {
-    path: "/infinite/",
+    path: "/infinite",
     redirect: "/infinite/1",
   },
   {

@@ -1,30 +1,30 @@
 <template>
   <ul class="pager-wrap">
-    <li @click="changePage" :title="firstPage" class="pager">
+    <li @click="changePage" :data-page="firstPage" class="pager">
       <i class="fa fa-step-backward"></i>
     </li>
-    <li @click="changePage" :title="prevPager" class="pager">
+    <li @click="changePage" :data-page="prevPager" class="pager">
       <i class="fa fa-backward"></i>
     </li>
-    <li @click="changePage" :title="prevPage" class="pager">
+    <li @click="changePage" :data-page="prevPage" class="pager">
       <i class="fa fa-caret-left"></i>
     </li>
     <li
       v-for="v in pageArr"
-      :title="v"
+      :data-page="v"
       :key="v"
       :class="`pager ${page === v ? 'active' : ''}`"
       @click="changePage"
     >
       {{ v }}
     </li>
-    <li @click="changePage" :title="nextPage" class="pager">
+    <li @click="changePage" :data-page="nextPage" class="pager">
       <i class="fa fa-caret-right"></i>
     </li>
-    <li @click="changePage" :title="nextPager" class="pager">
+    <li @click="changePage" :data-page="nextPager" class="pager">
       <i class="fa fa-forward"></i>
     </li>
-    <li @click="changePage" :title="lastPage" class="pager">
+    <li @click="changePage" :data-page="lastPage" class="pager">
       <i class="fa fa-step-forward"></i>
     </li>
   </ul>
@@ -36,11 +36,11 @@ export default {
   props: ["pager"],
   data() {
     return {
-      firstPage: 1,
       prevPager: 1,
       prevPage: 1,
-      nextPage: 1,
       nextPager: 1,
+      nextPage: 1,
+      firstPage: 1,
       lastPage: 1,
       pageArr: [],
       page: 1,
@@ -51,11 +51,11 @@ export default {
       if (v) {
         this.prevPager = v.prevPager;
         this.prevPage = v.prevPage;
-        this.nextPage = v.nextPage;
         this.nextPager = v.nextPager;
+        this.nextPage = v.nextPage;
         this.lastPage = v.totalPage;
-        this.pageArr = [];
         this.page = v.page;
+        this.pageArr = [];
         for (let i = v.startPage; i <= v.endPage; i++) {
           this.pageArr.push(i);
         }
@@ -64,9 +64,9 @@ export default {
   },
   methods: {
     changePage(e) {
-      const _page = e.currentTarget.title;
-      if (this.page != _page) {
-        this.$store.dispatch("ACT_BOOKS", _page);
+      const page = e.currentTarget.dataset["page"];
+      if (this.page != page) {
+        this.$store.dispatch("ACT_BOOKS", { page });
       }
     },
   },
