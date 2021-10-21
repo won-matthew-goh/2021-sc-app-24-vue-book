@@ -42,6 +42,8 @@ export default {
 <style lang="scss" scoped>
 tr {
   td {
+    padding: 1.25em;
+    vertical-align: middle;
     &:nth-child(2),
     &:nth-child(4) {
       text-align: left;
