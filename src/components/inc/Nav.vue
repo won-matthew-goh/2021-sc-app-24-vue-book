@@ -13,7 +13,7 @@
       </router-link>
     </li>
     <li>
-      <a href="//3.37.241.231">
+      <a href="//uonkun.kr">
         도서관리
         <small>(Express)</small>
       </a>
