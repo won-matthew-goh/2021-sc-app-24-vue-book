@@ -7,22 +7,22 @@
 </template>
 
 <script>
-import TableCp from "@/components/common/TableCp";
-import BtTop from "@/components/common/BtTop.vue";
-import { mapGetters } from "vuex";
+import TableCp from '@/components/common/TableCp';
+import BtTop from '@/components/common/BtTop.vue';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "InfiniteCp",
+  name: 'InfiniteCp',
   components: { TableCp, BtTop },
   data() {
     return {
       page: 1,
       books: [],
-      listCnt: 10,
+      listCnt: 15,
     };
   },
   computed: {
-    ...mapGetters(["GET_BOOKS", "GET_SCTOP"]),
+    ...mapGetters(['GET_BOOKS', 'GET_SCTOP']),
     lastPage() {
       return this.GET_BOOKS.pager ? this.GET_BOOKS.pager.totalPage : 10000;
     },
@@ -33,21 +33,21 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("ACT_LOADING", true);
-    this.$store.dispatch("ACT_BOOKS", {
+    this.$store.dispatch('ACT_LOADING', true);
+    this.$store.dispatch('ACT_BOOKS', {
       page: this.page++,
       listCnt: this.listCnt,
     });
   },
   updated() {
-    this.$store.dispatch("ACT_LOADING", false);
+    this.$store.dispatch('ACT_LOADING', false);
     window.scrollTo(0, this.GET_SCTOP);
   },
   methods: {
     changeVisible(isVisible) {
       if (isVisible && this.page <= this.lastPage) {
-        this.$store.dispatch("ACT_LOADING", true);
-        this.$store.dispatch("ACT_BOOKS", {
+        this.$store.dispatch('ACT_LOADING', true);
+        this.$store.dispatch('ACT_BOOKS', {
           page: this.page++,
           listCnt: this.listCnt,
         });
