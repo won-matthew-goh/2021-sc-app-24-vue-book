@@ -18,7 +18,7 @@ export default {
     return {
       page: 1,
       books: [],
-      listCnt: 15,
+      listCnt: 20,
     };
   },
   computed: {
